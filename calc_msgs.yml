@@ -1,0 +1,24 @@
+# all of the messages used in my calculator.rb file
+
+
+#en:
+  welcome: "Welcome to calculator! Please enter your name:"
+  valid_name: "Please enter a valid name."
+  name_greet: "Hi, " 
+  input1: "What's the first number?"
+  input2: "What's the second number?"
+  nope: "Hmmm... that doesn't appear to be a valid number."
+  again: "Do you want to perform another calculation?"
+  thanks: "Thank you for using the calculator. Bye!"
+
+
+#es:
+ # welcome: "Bienvenido a la calculadora! Entre su nombre:" 
+ # valid_name: "Asegúrese de entrar un nombre válido."
+ # input1: "¿Cuál es el primer número?"
+ # input2: "¿Cuál es el segundo número?" 
+ # nope: "Hmmm... que no parece ser un número válido."
+ # again: "¿Quieres realizar otro cálculo?"
+ # thanks: "Gracias por usar la calculadora. Adiós!"
+
+
