@@ -5,8 +5,8 @@ require 'yaml'
 MESSAGES = YAML.load_file('calc_msgs.yml')
 # LANGUAGE = 'en'
 
-# def messages(message, lang='en')
-#	  MESSAGES[lang][message]
+# def messages(message, lang='en') <----- I don't understand how to 
+#	  MESSAGES[lang][message]               how to implement this method.
 # end
 
 
