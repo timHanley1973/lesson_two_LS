@@ -2,22 +2,27 @@
 # Assignment: Calculator bonus features
 
 require 'yaml'
+
+LANGUAGE = 'en'.freeze
+
 MESSAGES = YAML.load_file('calc_msgs.yml')
-# LANGUAGE = 'en'
 
-# def messages(message, lang='en') <----- I don't understand how to 
-#	  MESSAGES[lang][message]               how to implement this method.
-# end
-
-
-
-def prompt(message)
-  Kernel.puts("=> #{message}")
+def messages(message, lang = 'en')
+  MESSAGES[message]
 end
+
+# def prompt(message)
+#   Kernel.puts("=> #{message}")
+# end
 
 # def valid_number?(num) <---original validation block
 #	num.to_i() != 0
 # end
+
+def prompt(key)
+  message = messages(key, LANGUAGE)
+  Kernel.puts("=> #{message}")
+end
 
 def operation_to_message(op)
   word = case op
@@ -45,44 +50,43 @@ def number?(input) # <---method invoking both validation methods
   integer?(input) || float?(input)
 end
 
-prompt(MESSAGES['welcome'])
-
+prompt('welcome')
 
 name = ''
 loop do
   name = Kernel.gets().chomp().to_yaml
 
   if name.empty?()
-    prompt(MESSAGES['valid_name'])
+    prompt('valid_name')
   else
     break
   end
 end
 
-prompt(MESSAGES['name_greet'])
+prompt('name_greet #{name}')
 
 loop do # main loop
   number1 = ''
   loop do
-    prompt(MESSAGES['input1'])
+    prompt('input1')
     number1 = Kernel.gets().chomp()
 
     if number?(number1)
       break
     else
-      prompt(MESSAGES['nope'])
+      prompt('nope')
     end
   end
 
   number2 = ''
   loop do
-    prompt(MESSAGES['input2'])
+    prompt('input2')
     number2 = Kernel.gets().chomp()
 
     if number?(number2)
       break
     else
-      prompt(MESSAGES['nope'])
+      prompt('nope')
     end
   end
 
@@ -121,9 +125,9 @@ loop do # main loop
 
   prompt("The result is #{result}.")
 
-  prompt(MESSAGES['again'])
+  prompt('again')
   answer = Kernel.gets().chomp()
   break unless answer.downcase().start_with?('y')
 end
 
-prompt(MESSAGES['thanks'])
+prompt('thanks')
