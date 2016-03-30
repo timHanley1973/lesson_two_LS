@@ -3,26 +3,22 @@
 
 require 'yaml'
 
-LANGUAGE = 'en'.freeze
+LANGUAGE = 'es'.freeze
 
 MESSAGES = YAML.load_file('calc_msgs.yml')
 
 def messages(message, lang = 'en')
-  MESSAGES[message]
+  MESSAGES[lang][message]
 end
 
-# def prompt(message)
-#   Kernel.puts("=> #{message}")
-# end
+def prompt(message)
+  Kernel.puts("=> #{message}")
+end
 
 # def valid_number?(num) <---original validation block
 #	num.to_i() != 0
 # end
 
-def prompt(key)
-  message = messages(key, LANGUAGE)
-  Kernel.puts("=> #{message}")
-end
 
 def operation_to_message(op)
   word = case op
@@ -50,43 +46,43 @@ def number?(input) # <---method invoking both validation methods
   integer?(input) || float?(input)
 end
 
-prompt('welcome')
+prompt(messages('welcome', LANGUAGE))
 
 name = ''
 loop do
   name = Kernel.gets().chomp().to_yaml
 
   if name.empty?()
-    prompt('valid_name')
+    prompt(messages('valid_name', LANGUAGE))
   else
     break
   end
 end
 
-prompt('name_greet #{name}')
+prompt(messages('name_greet', LANGUAGE) + ("#{name}!"))
 
 loop do # main loop
   number1 = ''
   loop do
-    prompt('input1')
+    prompt(messages('input1', LANGUAGE))
     number1 = Kernel.gets().chomp()
 
     if number?(number1)
       break
     else
-      prompt('nope')
+      prompt(messages('nope', LANGUAGE))
     end
   end
 
   number2 = ''
   loop do
-    prompt('input2')
+    prompt(messages('input2', LANGUAGE))
     number2 = Kernel.gets().chomp()
 
     if number?(number2)
       break
     else
-      prompt('nope')
+      prompt(messages('nope', LANGUAGE))
     end
   end
 
@@ -125,9 +121,9 @@ loop do # main loop
 
   prompt("The result is #{result}.")
 
-  prompt('again')
+  prompt(messages('again', LANGUAGE))
   answer = Kernel.gets().chomp()
   break unless answer.downcase().start_with?('y')
 end
 
-prompt('thanks')
+prompt(messages('thanks', LANGUAGE))
